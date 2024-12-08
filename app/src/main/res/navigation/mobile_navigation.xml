@@ -43,4 +43,11 @@
         android:name="com.example.vead.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/solicitudesPrestamoFragment"
+        android:name="com.example.vead.ui.solicitudes.SolicitudesPrestamoFragment"
+        android:label="Solicitudes"
+        tools:layout="@layout/fragment_solicitud_prestamo" />
+
 </navigation>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="8dp"
+        tools:ignore="MissingConstraints">
+
+        <!-- Folio y Registro -->
+        <TextView
+            android:id="@+id/tvFolioRegistro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Folio: 1234 | Registro: 56789"
+            android:textSize="16sp"
+            android:paddingBottom="4dp" />
+
+        <!-- Título del libro -->
+        <TextView
+            android:id="@+id/tvTituloLibro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Título: El Quijote"
+            android:textSize="16sp"
+            android:paddingBottom="4dp" />
+
+        <!-- Fechas -->
+        <TextView
+            android:id="@+id/tvFechas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prestamo: 2024-01-01 | Devolución: 2024-01-15"
+            android:paddingBottom="4dp" />
+
+        <!-- Estado -->
+        <TextView
+            android:id="@+id/tvEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Estado: Solicitado"
+            android:textStyle="italic"
+            android:paddingBottom="8dp" />
+
+        <!-- Botones (solo visible para administradores) -->
+        <LinearLayout
+            android:id="@+id/layoutBotones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnAprobar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Aprobar" />
+
+            <Button
+                android:id="@+id/btnRechazar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Rechazar" />
+
+            <Button
+                android:id="@+id/btnEliminarSolicitud"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="Eliminar" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

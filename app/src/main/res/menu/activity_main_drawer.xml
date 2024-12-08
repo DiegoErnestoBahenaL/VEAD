@@ -18,6 +18,12 @@
             android:title="@string/menu_slideshow" />
 
         <item
+            android:id="@+id/nav_solicitudes"
+
+            android:title="Solicitudes" />
+
+
+        <item
             android:id="@+id/nav_logout"
             android:icon="@android:drawable/ic_lock_power_off"
             android:title="Cerrar Sesión" />
