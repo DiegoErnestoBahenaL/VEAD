@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".ui.home.HomeFragment"
+    android:background="@color/background_primary">
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -22,54 +23,81 @@
                 android:id="@+id/textEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Correo Electrónico" />
+                android:text="Correo Electrónico"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"/>
             <EditText
                 android:id="@+id/editEmail"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:enabled="false" />
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
+                android:enabled="false"
+                />
 
             <TextView
                 android:id="@+id/textNombre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre" />
+                android:text="Nombre"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"/>
             <EditText
                 android:id="@+id/editNombre"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp" />
 
             <TextView
                 android:id="@+id/textFechaCreacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fecha de Creación" />
+                android:text="Fecha de Creación"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"/>
             <EditText
                 android:id="@+id/editFechaCreacion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:enabled="false" />
 
             <TextView
                 android:id="@+id/textFechaExpiracion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fecha de Expiración" />
+                android:text="Fecha de Expiración"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"/>
             <EditText
                 android:id="@+id/editFechaExpiracion"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp" />
 
             <TextView
                 android:id="@+id/textTipo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tipo de Usuario" />
+                android:text="Tipo de Usuario"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"/>
             <EditText
                 android:id="@+id/editTipo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:enabled="false" />
+
 
             <!-- Campos específicos de Administrador -->
             <TextView
@@ -77,11 +105,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Código Trabajador"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editCodigoTrabajador"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -89,11 +122,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="RFC"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editRFC"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -101,11 +139,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre Supervisor"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editNombreSupervisor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -113,11 +156,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Teléfono"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editTelefono"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -125,11 +173,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Turno"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editTurno"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <!-- Campos específicos de Estudiante -->
@@ -138,11 +191,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Registro"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editRegistro"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -150,11 +208,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Grado"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editGrado"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -162,11 +225,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Carrera"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editCarrera"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -174,11 +242,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Nombre Tutor"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editNombreTutor"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <TextView
@@ -186,11 +259,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Grupo"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:visibility="gone" />
             <EditText
                 android:id="@+id/editGrupo"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="40sp"
+                android:fontFamily="@font/aclonica"
+                android:background="@drawable/edittext_border2"
+                android:paddingStart="10dp"
                 android:visibility="gone" />
 
             <Button
@@ -198,6 +276,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Actualizar"
+                android:fontFamily="@font/aclonica"
+                android:backgroundTint="@color/button_primary"
                 android:layout_margin="16dp" />
         </LinearLayout>
 

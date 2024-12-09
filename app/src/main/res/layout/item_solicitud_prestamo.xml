@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_primary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,6 +18,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/aclonica"
             android:paddingBottom="4dp" />
 
         <!-- Título del libro -->
@@ -25,6 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="16sp"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/aclonica"
             android:paddingBottom="4dp" />
 
         <!-- Fechas -->
@@ -40,6 +45,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="italic"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/aclonica"
             android:paddingBottom="8dp" />
 
         <!-- Botones (solo visible para administradores) -->
@@ -48,28 +55,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:gravity="end"
+            android:gravity="left"
             android:visibility="gone">
 
             <Button
                 android:id="@+id/btnAprobar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Aprobar" />
+                android:text="Aprobar"
+                android:textSize="13sp"
+                android:fontFamily="@font/aclonica"
+                android:backgroundTint="@color/button_primary"/>
 
             <Button
                 android:id="@+id/btnRechazar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Rechazar" />
+                android:text="Rechazar"
+                android:textSize="13sp"
+                android:fontFamily="@font/aclonica"
+                android:backgroundTint="@color/button_primary"/>
 
             <Button
                 android:id="@+id/btnEliminarSolicitud"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:text="Eliminar" />
+                android:text="Eliminar"
+                android:textSize="13sp"
+                android:fontFamily="@font/aclonica"
+                android:backgroundTint="@color/button_primary"/>
         </LinearLayout>
     </LinearLayout>
 

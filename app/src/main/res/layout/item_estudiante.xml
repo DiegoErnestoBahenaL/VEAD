@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_primary">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -16,12 +16,16 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Correo"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/aclonica"
             android:textSize="16sp" />
 
         <Button
             android:id="@+id/btnEliminar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/button_primary"
+            android:fontFamily="@font/aclonica"
             android:text="Eliminar" />
     </LinearLayout>
 

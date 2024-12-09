@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_primary">
 
     <ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
@@ -19,6 +20,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Título"
+                android:textColor="@color/text_primary"
+                android:fontFamily="@font/aclonica"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 android:paddingBottom="8dp" />
@@ -28,6 +31,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Autor"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="@font/aclonica"
                 android:paddingBottom="8dp" />
 
             <TextView
@@ -35,6 +40,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Género"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="@font/aclonica"
                 android:paddingBottom="8dp" />
 
             <TextView
@@ -42,6 +49,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Número de copias"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="@font/aclonica"
                 android:paddingBottom="8dp" />
 
             <TextView
@@ -49,6 +58,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Ubicación"
+                android:textColor="@color/text_secondary"
+                android:fontFamily="@font/aclonica"
                 android:paddingBottom="8dp" />
         </LinearLayout>
     </ScrollView>

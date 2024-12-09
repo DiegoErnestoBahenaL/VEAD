@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="background_primary">#fff6ea</color>
+    <color name="button_primary">#F8C8D1</color>
+    <color name="button_secondary">#B8E4C9</color>
+    <color name="text_primary">#333333</color>
+    <color name="text_secondary">#767676</color>
+    <color name="title">#A3CBE3</color>
+    <color name="icons">#E5D4EF</color>
+    <color name="positive_status">#C8F7C5</color>
+    <color name="negative_status">#F9C7C7</color>
 </resources>

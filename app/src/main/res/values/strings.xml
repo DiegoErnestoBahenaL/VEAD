@@ -6,6 +6,7 @@
     <string name="nav_header_subtitle">vead@company.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="titulologin">Bienvenido</string>
 
     <string name="menu_home">Perfil</string>
     <string name="menu_gallery">Estudiantes</string>
