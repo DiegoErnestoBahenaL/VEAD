@@ -20,7 +20,8 @@
         <item
             android:id="@+id/nav_solicitudes"
 
-            android:title="Solicitudes" />
+            android:icon="@android:drawable/ic_dialog_email"
+            android:title="@string/menu_solicitudes" />
 
 
         <item

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <ScrollView
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="-16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -19,8 +21,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Nombre" />
 
             <EditText
                 android:id="@+id/etNombre"
@@ -32,8 +34,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Correo"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Correo" />
 
             <EditText
                 android:id="@+id/etEmail"
@@ -45,8 +47,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contraseña"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Contraseña" />
 
             <EditText
                 android:id="@+id/etContrasena"
@@ -58,8 +60,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Registro"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Registro" />
 
             <EditText
                 android:id="@+id/etRegistro"
@@ -71,36 +73,37 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fecha de creación"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Fecha de creación" />
 
             <EditText
                 android:id="@+id/etFechaCreacion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Seleccione la fecha de creación"
-                android:focusable="false" />
+                android:focusable="false"
+                android:hint="Seleccione la fecha de creación" />
 
             <!-- Fecha de Expiración -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Fecha de expiración"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Fecha de expiración" />
 
             <EditText
                 android:id="@+id/etFechaExpiracion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Seleccione la fecha de expiración"
-                android:focusable="false" />
+                android:focusable="false"
+                android:hint="Seleccione la fecha de expiración" />
 
             <!-- Grado -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Grado"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Grado" />
+
             <EditText
                 android:id="@+id/etGrado"
                 android:layout_width="match_parent"
@@ -112,8 +115,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Carrera"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Carrera" />
+
             <EditText
                 android:id="@+id/etCarrera"
                 android:layout_width="match_parent"
@@ -124,8 +128,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Nombre del Tutor"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Nombre del Tutor" />
+
             <EditText
                 android:id="@+id/etNombreTutor"
                 android:layout_width="match_parent"
@@ -136,8 +141,9 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Grupo"
-                android:padding="8dp" />
+                android:padding="8dp"
+                android:text="Grupo" />
+
             <EditText
                 android:id="@+id/etGrupo"
                 android:layout_width="match_parent"

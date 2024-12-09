@@ -26,7 +26,7 @@ class SolicitudPrestamoAdapter(
         val layoutBotones: LinearLayout = view.findViewById(R.id.layoutBotones)
         val btnAprobar: Button = view.findViewById(R.id.btnAprobar)
         val btnRechazar: Button = view.findViewById(R.id.btnRechazar)
-        val btnEliminar: Button = view.findViewById(R.id.btnEliminar)
+        val btnEliminar: Button = view.findViewById(R.id.btnEliminarSolicitud)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SolicitudViewHolder {

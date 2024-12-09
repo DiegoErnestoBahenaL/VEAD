@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="411dp"
+        android:layout_height="420dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:padding="16dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="16dp">
 
         <!-- Título -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Título"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp"
+            android:text="Título" />
+
         <EditText
             android:id="@+id/etTituloActualizar"
             android:layout_width="match_parent"
@@ -27,9 +30,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Autor"
             android:paddingTop="8dp"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp"
+            android:text="Autor" />
+
         <EditText
             android:id="@+id/etAutorActualizar"
             android:layout_width="match_parent"
@@ -40,9 +44,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Género"
             android:paddingTop="8dp"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp"
+            android:text="Género" />
+
         <EditText
             android:id="@+id/etGeneroActualizar"
             android:layout_width="match_parent"
@@ -53,9 +58,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Número de Copias"
             android:paddingTop="8dp"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp"
+            android:text="Número de Copias" />
+
         <EditText
             android:id="@+id/etNumeroCopiasActualizar"
             android:layout_width="match_parent"
@@ -67,9 +73,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ubicación"
             android:paddingTop="8dp"
-            android:paddingBottom="4dp" />
+            android:paddingBottom="4dp"
+            android:text="Ubicación" />
+
         <EditText
             android:id="@+id/etUbicacionActualizar"
             android:layout_width="match_parent"

@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -17,7 +16,6 @@
             android:id="@+id/tvFolioRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Folio: 1234 | Registro: 56789"
             android:textSize="16sp"
             android:paddingBottom="4dp" />
 
@@ -26,7 +24,6 @@
             android:id="@+id/tvTituloLibro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Título: El Quijote"
             android:textSize="16sp"
             android:paddingBottom="4dp" />
 
@@ -35,7 +32,6 @@
             android:id="@+id/tvFechas"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Prestamo: 2024-01-01 | Devolución: 2024-01-15"
             android:paddingBottom="4dp" />
 
         <!-- Estado -->
@@ -43,7 +39,6 @@
             android:id="@+id/tvEstado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Estado: Solicitado"
             android:textStyle="italic"
             android:paddingBottom="8dp" />
 
