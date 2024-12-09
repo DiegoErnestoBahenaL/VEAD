@@ -38,10 +38,10 @@ class Login : AppCompatActivity() {
 
                 when {
                     administrador != null && administrador.contrasena == contrasena -> {
-                        navegarADashboard(administrador.tipo)
+                        navegarADashboard(administrador.tipo, administrador.email)
                     }
                     estudiante != null && estudiante.contrasena == contrasena -> {
-                        navegarADashboard(estudiante.tipo)
+                        navegarADashboard(estudiante.tipo, estudiante.email)
                     }
                     else -> {
                         Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
@@ -57,10 +57,11 @@ class Login : AppCompatActivity() {
         }
     }
 
-    private fun navegarADashboard(tipoUsuario: String) {
+    private fun navegarADashboard(tipoUsuario: String, email: String) {
 
         val intent = Intent(this, MainActivity::class.java)
             .putExtra("TipoUsuario", tipoUsuario)
+            .putExtra("Email", email)
         startActivity(intent)
         finish()
     }
