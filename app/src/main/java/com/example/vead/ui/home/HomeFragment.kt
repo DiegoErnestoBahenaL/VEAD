@@ -24,15 +24,11 @@ class HomeFragment : Fragment() {
     private lateinit var tipoUsuario: String
 
     // Campos comunes de la clase Usuario
-    private lateinit var textEmail: TextView
     private lateinit var editEmail: EditText
-    private lateinit var textNombre: TextView
+    private lateinit var editContrasena: EditText
     private lateinit var editNombre: EditText
-    private lateinit var textFechaCreacion: TextView
     private lateinit var editFechaCreacion: EditText
-    private lateinit var textFechaExpiracion: TextView
     private lateinit var editFechaExpiracion: EditText
-    private lateinit var textTipo: TextView
     private lateinit var editTipo: EditText
 
     // Campos para Administrador
@@ -129,15 +125,11 @@ class HomeFragment : Fragment() {
 
     private fun inicializarCampos(rootView: View) {
         // Inicializar campos comunes de Usuario
-        textEmail = rootView.findViewById(R.id.textEmail)
         editEmail = rootView.findViewById(R.id.editEmail)
-        textNombre = rootView.findViewById(R.id.textNombre)
+        editContrasena = rootView.findViewById(R.id.editContrasena)
         editNombre = rootView.findViewById(R.id.editNombre)
-        textFechaCreacion = rootView.findViewById(R.id.textFechaCreacion)
         editFechaCreacion = rootView.findViewById(R.id.editFechaCreacion)
-        textFechaExpiracion = rootView.findViewById(R.id.textFechaExpiracion)
         editFechaExpiracion = rootView.findViewById(R.id.editFechaExpiracion)
-        textTipo = rootView.findViewById(R.id.textTipo)
         editTipo = rootView.findViewById(R.id.editTipo)
 
         // Inicializar campos para Administrador
@@ -207,6 +199,7 @@ class HomeFragment : Fragment() {
 
     private fun llenarCamposUsuario(administrador: Administrador) {
         editEmail.setText(administrador.email)
+        editContrasena.setText(administrador.contrasena)
         editNombre.setText(administrador.nombre)
         editFechaCreacion.setText(administrador.fechaCreacion)
         editFechaExpiracion.setText(administrador.fechaExpiracion)
@@ -216,6 +209,7 @@ class HomeFragment : Fragment() {
 
     private fun llenarCamposUsuario(estudiante: Estudiante) {
         editEmail.setText(estudiante.email)
+        editContrasena.setText(estudiante.contrasena)
         editNombre.setText(estudiante.nombre)
         editFechaCreacion.setText(estudiante.fechaCreacion)
         editFechaExpiracion.setText(estudiante.fechaExpiracion)
@@ -283,11 +277,11 @@ class HomeFragment : Fragment() {
     private fun actualizarInformacion(estudiante: Estudiante) {
         val nuevoEstudiante = Estudiante(
             email = editEmail.text.toString(),
-            contrasena = estudiante.contrasena, // No se actualiza en el formulario
+            contrasena = editContrasena.text.toString(),
             nombre = editNombre.text.toString(),
             fechaCreacion = editFechaCreacion.text.toString(),
             fechaExpiracion = editFechaExpiracion.text.toString(),
-            tipo = editTipo.text.toString(),
+            tipo = estudiante.tipo,
             registro = editRegistro.text.toString(),
             grado = editGrado.text.toString().toIntOrNull() ?: 0,
             carrera = editCarrera.text.toString(),

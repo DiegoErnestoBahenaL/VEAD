@@ -12,4 +12,5 @@
     <string name="menu_gallery">Estudiantes</string>
     <string name="menu_slideshow">Libros</string>
     <string name="menu_solicitudes">Solicitudes</string>
+    <string name="menu_multas">Multas</string>
 </resources>

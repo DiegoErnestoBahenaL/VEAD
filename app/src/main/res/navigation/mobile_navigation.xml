@@ -50,4 +50,12 @@
         android:label="@string/menu_solicitudes"
         tools:layout="@layout/fragment_solicitud_prestamo" />
 
+    <fragment
+        android:id="@+id/nav_multas"
+        android:name="com.example.vead.ui.multas.MultasFragment"
+        android:label="@string/menu_multas"
+        tools:layout="@layout/fragment_multas" />
+
+
+
 </navigation>
