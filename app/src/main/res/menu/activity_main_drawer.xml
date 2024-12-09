@@ -19,10 +19,13 @@
 
         <item
             android:id="@+id/nav_solicitudes"
-
             android:icon="@android:drawable/ic_dialog_email"
             android:title="@string/menu_solicitudes" />
 
+        <item
+            android:id="@+id/nav_multas"
+            android:icon="@android:drawable/ic_dialog_alert"
+            android:title="@string/menu_multas" />
 
         <item
             android:id="@+id/nav_logout"
