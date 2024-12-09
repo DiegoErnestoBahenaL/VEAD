@@ -15,7 +15,28 @@
         android:id="@+id/nav_gallery"
         android:name="com.example.vead.ui.gallery.GalleryFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_gallery">
+        <action
+            android:id="@+id/action_galleryFragment_to_formularioEstudianteFragment"
+            app:destination="@id/formularioEstudianteFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/formularioEstudianteFragment"
+        android:name="com.example.vead.ui.gallery.FormularioEstudianteFragment"
+        android:label="Formulario Estudiante"
+        tools:layout="@layout/fragment_formulario_estudiante" />
+
+
+    <fragment
+        android:id="@+id/detallesLibroFragment"
+        android:name="com.example.vead.ui.slideshow.DetallesLibroFragment"
+        android:label="Detalles del Libro"
+        tools:layout="@layout/fragment_detalles_libro" />
+
+    <action
+        android:id="@+id/action_slideshowFragment_to_detallesLibroFragment"
+        app:destination="@id/detallesLibroFragment" />
 
     <fragment
         android:id="@+id/nav_slideshow"
