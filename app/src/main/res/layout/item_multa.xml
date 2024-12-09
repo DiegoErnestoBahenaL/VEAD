@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background_primary">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,6 +15,8 @@
             android:id="@+id/tvFolioRegistro"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/aclonica"
             android:textSize="16sp"
             android:paddingBottom="4dp" />
 
@@ -22,6 +25,8 @@
             android:id="@+id/tvFechaGravedad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/aclonica"
             android:paddingBottom="4dp" />
 
         <!-- Descripción -->
@@ -29,6 +34,8 @@
             android:id="@+id/tvDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/aclonica"
             android:paddingBottom="8dp" />
 
         <!-- Frima -->
@@ -36,6 +43,8 @@
             android:id="@+id/tvFirma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/text_primary"
+            android:fontFamily="@font/aclonica"
             android:paddingBottom="8dp" />
 
         <!-- Botón eliminar (visible solo para administradores) -->
@@ -44,6 +53,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Eliminar"
+            android:fontFamily="@font/aclonica"
+            android:backgroundTint="@color/button_primary"
             android:visibility="gone" />
     </LinearLayout>
 
