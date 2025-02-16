@@ -9,16 +9,15 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
-import com.example.vead.data.entities.Multa
-import com.example.vead.data.repositories.EstudianteRepository
-import com.example.vead.data.repositories.MultaRepository
+import com.example.vead.data.entities.Fine
+import com.example.vead.data.repositories.FineRepository
 
 class MultasFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: MultaAdapter
 
-    private val repository = MultaRepository()
+    private val repository = FineRepository()
     private var tipoUsuario: String? = null
     private var registroEstudiante: String? = null
 
@@ -74,8 +73,8 @@ class MultasFragment : Fragment() {
         dialog.show(parentFragmentManager, "DialogAgregarMulta")
     }
 
-    private fun eliminarMulta(multa: Multa) {
-        repository.eliminar(multa.folio)
+    private fun eliminarMulta(fine: Fine) {
+        repository.eliminar(fine.folio)
         cargarMultas()
     }
 }

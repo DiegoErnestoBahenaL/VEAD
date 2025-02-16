@@ -11,8 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.vead.R
-import com.example.vead.data.entities.Estudiante
-import com.example.vead.data.repositories.EstudianteRepository
 import java.util.Calendar
 
 class FormularioEstudianteFragment : Fragment() {

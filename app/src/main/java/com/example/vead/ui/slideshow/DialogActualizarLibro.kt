@@ -6,11 +6,11 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import com.example.vead.R
-import com.example.vead.data.entities.Libro
+import com.example.vead.data.entities.Book
 
 class DialogActualizarLibro(
-    private val libro: Libro,
-    private val onLibroActualizado: (Libro) -> Unit
+    private val book: Book,
+    private val onLibroActualizado: (Book) -> Unit
 ) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -24,23 +24,23 @@ class DialogActualizarLibro(
         val etUbicacion = view.findViewById<EditText>(R.id.etUbicacionActualizar)
 
         // Pre-cargar datos del libro
-        etTitulo.setText(libro.titulo)
-        etAutor.setText(libro.autor)
-        etGenero.setText(libro.genero)
-        etNumeroCopias.setText(libro.numeroCopias.toString())
-        etUbicacion.setText(libro.ubicacion)
+        etTitulo.setText(book.titulo)
+        etAutor.setText(book.autor)
+        etGenero.setText(book.genero)
+        etNumeroCopias.setText(book.numeroCopias.toString())
+        etUbicacion.setText(book.ubicacion)
 
         builder.setView(view)
             .setTitle("Actualizar Libro")
             .setPositiveButton("Guardar") { _, _ ->
-                val libroActualizado = Libro(
+                val bookActualizado = Book(
                     titulo = etTitulo.text.toString(),
                     autor = etAutor.text.toString(),
                     genero = etGenero.text.toString(),
                     numeroCopias = etNumeroCopias.text.toString().toIntOrNull() ?: 0,
                     ubicacion = etUbicacion.text.toString()
                 )
-                onLibroActualizado(libroActualizado)
+                onLibroActualizado(bookActualizado)
             }
             .setNegativeButton("Cancelar", null)
 

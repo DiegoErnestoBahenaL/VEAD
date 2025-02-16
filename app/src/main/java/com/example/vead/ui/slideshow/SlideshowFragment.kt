@@ -6,24 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
-import com.example.vead.data.entities.Libro
-import com.example.vead.data.repositories.EstudianteRepository
-import com.example.vead.data.repositories.LibroRepository
-import com.example.vead.data.repositories.SolicitudPrestamoRepository
+import com.example.vead.data.entities.Book
+import com.example.vead.data.repositories.BookRepository
+import com.example.vead.data.repositories.RequestRepository
 import com.example.vead.databinding.FragmentSlideshowBinding
 
 class SlideshowFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: LibroAdapter
-    private val libroRepository = LibroRepository()
+    private val bookRepository = BookRepository()
     private var tipoUsuario: String? = null
 
 
@@ -66,7 +64,7 @@ class SlideshowFragment : Fragment() {
     }
 
     private fun actualizarListaLibros() {
-        val libros = libroRepository.obtenerTodos()
+        val libros = bookRepository.obtenerTodos()
         adapter = LibroAdapter(
             libros,
             tipoUsuario ?: "",
@@ -77,7 +75,7 @@ class SlideshowFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun solicitarPrestamo(libro: Libro) {
+    private fun solicitarPrestamo(book: Book) {
         // Obtener el registro del estudiante desde el repositorio
         val emailEstudiante = activity?.intent?.getStringExtra("Email") ?: ""
         val estudiante = EstudianteRepository().buscarUno(emailEstudiante)
@@ -89,11 +87,11 @@ class SlideshowFragment : Fragment() {
 
         // Mostrar el diálogo para capturar las fechas
         val dialog = DialogSolicitudPrestamo(
-            tituloLibro = libro.titulo,
+            tituloLibro = book.titulo,
             registroEstudiante = estudiante.registro
         ) { solicitud ->
 
-            SolicitudPrestamoRepository().agregar(solicitud)
+            RequestRepository().agregar(solicitud)
             Toast.makeText(requireContext(), "Solicitud de préstamo creada con éxito.", Toast.LENGTH_SHORT).show()
         }
 
@@ -102,26 +100,26 @@ class SlideshowFragment : Fragment() {
 
     private fun mostrarDialogAgregarLibro() {
         val dialog = DialogAgregarLibro { libro ->
-            libroRepository.agregar(libro)
+            bookRepository.agregar(libro)
             actualizarListaLibros()
         }
         dialog.show(parentFragmentManager, "DialogAgregarLibro")
     }
 
-    private fun mostrarDialogActualizarLibro(libro: Libro) {
-        val dialog = DialogActualizarLibro(libro) { libroActualizado ->
-            libroRepository.actualizar(libro.titulo, libroActualizado)
+    private fun mostrarDialogActualizarLibro(book: Book) {
+        val dialog = DialogActualizarLibro(book) { libroActualizado ->
+            bookRepository.actualizar(book.titulo, libroActualizado)
             actualizarListaLibros()
         }
         dialog.show(parentFragmentManager, "DialogActualizarLibro")
     }
 
-    private fun mostrarDialogConfirmarEliminacion(libro: Libro) {
+    private fun mostrarDialogConfirmarEliminacion(book: Book) {
         AlertDialog.Builder(requireContext())
             .setTitle("Confirmar eliminación")
-            .setMessage("¿Estás seguro de que deseas eliminar '${libro.titulo}'?")
+            .setMessage("¿Estás seguro de que deseas eliminar '${book.titulo}'?")
             .setPositiveButton("Sí") { _, _ ->
-                libroRepository.eliminar(libro.titulo)
+                bookRepository.eliminar(book.titulo)
                 actualizarListaLibros()
             }
             .setNegativeButton("Cancelar", null)

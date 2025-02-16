@@ -7,12 +7,12 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
-import com.example.vead.data.entities.Multa
+import com.example.vead.data.entities.Fine
 
 class MultaAdapter(
-    private val multas: List<Multa>,
+    private val fines: List<Fine>,
     private val tipoUsuario: String,
-    private val onEliminarClick: (Multa) -> Unit
+    private val onEliminarClick: (Fine) -> Unit
 ) : RecyclerView.Adapter<MultaAdapter.MultaViewHolder>() {
 
     class MultaViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -30,7 +30,7 @@ class MultaAdapter(
     }
 
     override fun onBindViewHolder(holder: MultaViewHolder, position: Int) {
-        val multa = multas[position]
+        val multa = fines[position]
 
         holder.tvFolioRegistro.text = "Folio: ${multa.folio} | Registro: ${multa.registroEstudiante}"
         holder.tvFechaGravedad.text = "Fecha: ${multa.fecha} | Gravedad: ${multa.gravedad}"
@@ -46,5 +46,5 @@ class MultaAdapter(
         }
     }
 
-    override fun getItemCount(): Int = multas.size
+    override fun getItemCount(): Int = fines.size
 }

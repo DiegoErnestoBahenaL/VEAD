@@ -10,14 +10,14 @@ import android.widget.TextView
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
-import com.example.vead.data.entities.Libro
+import com.example.vead.data.entities.Book
 
 class LibroAdapter(
-    private val libros: List<Libro>,
+    private val books: List<Book>,
     private val tipoUsuario: String,
-    private val onSolicitarClick: (Libro) -> Unit,
-    private val onActualizarClick: (Libro) -> Unit,
-    private val onEliminarClick: (Libro) -> Unit
+    private val onSolicitarClick: (Book) -> Unit,
+    private val onActualizarClick: (Book) -> Unit,
+    private val onEliminarClick: (Book) -> Unit
 ) : RecyclerView.Adapter<LibroAdapter.LibroViewHolder>() {
 
     class LibroViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -35,7 +35,7 @@ class LibroAdapter(
     }
 
     override fun onBindViewHolder(holder: LibroViewHolder, position: Int) {
-        val libro = libros[position]
+        val libro = books[position]
         holder.txtTitulo.text = libro.titulo
         holder.imgLibro.setImageResource(obtenerImagenAleatoria()) // Imagen aleatoria
 
@@ -70,7 +70,7 @@ class LibroAdapter(
         }
     }
 
-    override fun getItemCount(): Int = libros.size
+    override fun getItemCount(): Int = books.size
 
     private fun obtenerImagenAleatoria(): Int {
         val imagenes = listOf(R.drawable.portada1, R.drawable.portada2, R.drawable.portada3) // Agrega tus imágenes aquí

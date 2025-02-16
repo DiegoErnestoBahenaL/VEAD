@@ -14,8 +14,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
-import com.example.vead.data.entities.Estudiante
-import com.example.vead.data.repositories.EstudianteRepository
 import com.example.vead.databinding.FragmentGalleryBinding
 
 class GalleryFragment : Fragment() {

@@ -8,15 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
-import com.example.vead.data.entities.SolicitudPrestamo
-import com.example.vead.data.repositories.EstudianteRepository
-import com.example.vead.data.repositories.SolicitudPrestamoRepository
+import com.example.vead.data.entities.Request
+import com.example.vead.data.repositories.RequestRepository
 
 class SolicitudesPrestamoFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: SolicitudPrestamoAdapter
-    private val repository = SolicitudPrestamoRepository()
+    private val repository = RequestRepository()
     private var tipoUsuario: String? = null
     private var registroEstudiante: String? = null
 
@@ -56,13 +55,13 @@ class SolicitudesPrestamoFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    private fun actualizarEstado(solicitud: SolicitudPrestamo, nuevoEstado: String) {
+    private fun actualizarEstado(solicitud: Request, nuevoEstado: String) {
         solicitud.estado = nuevoEstado
         repository.actualizar(solicitud.folio, solicitud)
         cargarSolicitudes()
     }
 
-    private fun eliminarSolicitud(solicitud: SolicitudPrestamo) {
+    private fun eliminarSolicitud(solicitud: Request) {
         repository.eliminar(solicitud.folio)
         cargarSolicitudes()
     }

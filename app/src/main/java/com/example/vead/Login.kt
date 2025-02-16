@@ -2,6 +2,7 @@ package com.example.vead
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -9,10 +10,15 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.vead.data.repositories.AdministradorRepository
-import com.example.vead.data.repositories.EstudianteRepository
+import com.example.vead.data.entities.User
+import com.example.vead.data.repositories.UserRepository
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class Login : AppCompatActivity() {
+    private lateinit var databaseRef: DatabaseReference
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -23,6 +29,8 @@ class Login : AppCompatActivity() {
         val loginButton = findViewById<Button>(R.id.buttonLogin)
 
         loginButton.setOnClickListener {
+
+
             val email = emailField.text.toString()
             val contrasena = passwordField.text.toString()
 
@@ -30,23 +38,20 @@ class Login : AppCompatActivity() {
                 Toast.makeText(this, "Por favor, complete ambos campos", Toast.LENGTH_SHORT).show()
             } else {
 
-                val adminisitradorRepo = AdministradorRepository()
-                val estudianteRepo = EstudianteRepository()
+                val userRepo = UserRepository()
 
-                val administrador = adminisitradorRepo.buscarUno(email)
-                val estudiante = estudianteRepo.buscarUno(email)
+                userRepo.getUserByEmail(email){
+                    user ->
+                    if (user != null){
+                        navegarADashboard(user.userType, user.email)
 
-                when {
-                    administrador != null && administrador.contrasena == contrasena -> {
-                        navegarADashboard(administrador.tipo, administrador.email)
                     }
-                    estudiante != null && estudiante.contrasena == contrasena -> {
-                        navegarADashboard(estudiante.tipo, estudiante.email)
-                    }
-                    else -> {
+                    else {
                         Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
+
                     }
                 }
+
             }
         }
 

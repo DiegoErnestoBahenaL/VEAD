@@ -7,13 +7,13 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import com.example.vead.R
-import com.example.vead.data.entities.SolicitudPrestamo
+import com.example.vead.data.entities.Request
 import java.util.Calendar
 
 class DialogSolicitudPrestamo(
     private val tituloLibro: String,
     private val registroEstudiante: String,
-    private val onSolicitudCreada: (SolicitudPrestamo) -> Unit
+    private val onSolicitudCreada: (Request) -> Unit
 ) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -36,7 +36,7 @@ class DialogSolicitudPrestamo(
             .setTitle("Solicitud de Préstamo")
             .setPositiveButton("Solicitar") { _, _ ->
                 val folio = (1000..9999).random() // Generar folio aleatorio
-                val solicitud = SolicitudPrestamo(
+                val solicitud = Request(
                     folio = folio,
                     registroEstudiante = registroEstudiante,
                     tituloLibro = tituloLibro,

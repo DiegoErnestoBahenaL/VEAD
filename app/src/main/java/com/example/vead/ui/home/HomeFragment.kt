@@ -11,10 +11,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.vead.R
-import com.example.vead.data.entities.Administrador
-import com.example.vead.data.entities.Estudiante
-import com.example.vead.data.repositories.AdministradorRepository
-import com.example.vead.data.repositories.EstudianteRepository
+import com.example.vead.data.repositories.UserRepository
 import com.example.vead.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -75,7 +72,7 @@ class HomeFragment : Fragment() {
         tipoUsuario = requireActivity().intent.getStringExtra("TipoUsuario") ?: ""
 
         if (tipoUsuario == "Administrador") {
-            administrador = AdministradorRepository().buscarUno(email)
+            administrador = UserRepository().buscarUno(email)
         }
         else if (tipoUsuario == "Estudiante") {
             estudiante = EstudianteRepository().buscarUno(email)
@@ -258,7 +255,7 @@ class HomeFragment : Fragment() {
             telefono = editTelefono.text.toString(),
             turno = editTurno.text.toString()
         )
-        val exito = AdministradorRepository().actualizar(email, nuevoAdministrador)
+        val exito = UserRepository().actualizar(email, nuevoAdministrador)
         if (exito) {
             Toast.makeText(
                 requireContext(),

@@ -6,9 +6,9 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.fragment.app.DialogFragment
 import com.example.vead.R
-import com.example.vead.data.entities.Libro
+import com.example.vead.data.entities.Book
 
-class DialogAgregarLibro(private val onLibroAgregado: (Libro) -> Unit) : DialogFragment() {
+class DialogAgregarLibro(private val onLibroAgregado: (Book) -> Unit) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val builder = AlertDialog.Builder(requireContext())
@@ -23,14 +23,14 @@ class DialogAgregarLibro(private val onLibroAgregado: (Libro) -> Unit) : DialogF
         builder.setView(view)
             .setTitle("Agregar Libro")
             .setPositiveButton("Agregar") { _, _ ->
-                val libro = Libro(
+                val book = Book(
                     titulo = etTitulo.text.toString(),
                     autor = etAutor.text.toString(),
                     genero = etGenero.text.toString(),
                     numeroCopias = etNumeroCopias.text.toString().toIntOrNull() ?: 0,
                     ubicacion = etUbicacion.text.toString()
                 )
-                onLibroAgregado(libro)
+                onLibroAgregado(book)
             }
             .setNegativeButton("Cancelar", null)
 

@@ -7,7 +7,6 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
-import com.example.vead.data.entities.Estudiante
 
 class EstudianteAdapter (
     private val estudiantes: List<Estudiante>,

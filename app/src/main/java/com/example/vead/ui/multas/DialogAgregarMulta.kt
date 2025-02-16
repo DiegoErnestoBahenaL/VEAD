@@ -11,15 +11,12 @@ import android.widget.ListView
 import android.widget.Spinner
 import androidx.fragment.app.DialogFragment
 import com.example.vead.R
-import com.example.vead.data.entities.Multa
-import java.text.SimpleDateFormat
+import com.example.vead.data.entities.Fine
 import java.util.Calendar
-import java.util.Date
-import java.util.Locale
 
 class DialogAgregarMulta(
     private val registrosEstudiantes: List<String>,
-    private val onMultaAgregada: (Multa) -> Unit
+    private val onMultaAgregada: (Fine) -> Unit
 ) : DialogFragment() {
 
     @SuppressLint("MissingInflatedId")
@@ -58,7 +55,7 @@ class DialogAgregarMulta(
             .setTitle("Agregar Multa")
             .setPositiveButton("Agregar") { _, _ ->
                 val folio = (1000..9999).random()
-                val multa = Multa(
+                val fine = Fine(
                     folio = folio,
                     fecha = etFecha.text.toString(),
                     registroEstudiante = spinnerEstudiantes.selectedItem.toString(),
@@ -66,7 +63,7 @@ class DialogAgregarMulta(
                     descripcion = etDescripcion.text.toString(),
                     firma = etFirma.text.toString()
                 )
-                onMultaAgregada(multa)
+                onMultaAgregada(fine)
             }
             .setNegativeButton("Cancelar", null)
 

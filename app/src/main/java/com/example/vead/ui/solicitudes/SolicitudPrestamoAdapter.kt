@@ -8,14 +8,14 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
-import com.example.vead.data.entities.SolicitudPrestamo
+import com.example.vead.data.entities.Request
 
 class SolicitudPrestamoAdapter(
-    private val solicitudes: List<SolicitudPrestamo>,
+    private val solicitudes: List<Request>,
     private val tipoUsuario: String,
-    private val onAprobarClick: (SolicitudPrestamo) -> Unit,
-    private val onRechazarClick: (SolicitudPrestamo) -> Unit,
-    private val onEliminarClick: (SolicitudPrestamo) -> Unit
+    private val onAprobarClick: (Request) -> Unit,
+    private val onRechazarClick: (Request) -> Unit,
+    private val onEliminarClick: (Request) -> Unit
 ) : RecyclerView.Adapter<SolicitudPrestamoAdapter.SolicitudViewHolder>() {
 
     class SolicitudViewHolder(view: View) : RecyclerView.ViewHolder(view) {
