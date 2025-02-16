@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "116391164335",
+    "project_id": "libraryproject-954b4",
+    "storage_bucket": "libraryproject-954b4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:116391164335:android:5816f8af1f11af5e6a975a",
+        "android_client_info": {
+          "package_name": "com.example.vead"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxYnw3twU9GSscwiJ3DlsAY8KiOTA-U4g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
