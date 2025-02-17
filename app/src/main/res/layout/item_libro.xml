@@ -20,8 +20,9 @@
 
         <ImageView
             android:id="@+id/imgLibro"
-            android:layout_width="396dp"
+            android:layout_width="197dp"
             android:layout_height="230dp"
+            android:layout_gravity="center_horizontal"
             android:scaleType="centerCrop"
             android:src="@drawable/default_img" />
 

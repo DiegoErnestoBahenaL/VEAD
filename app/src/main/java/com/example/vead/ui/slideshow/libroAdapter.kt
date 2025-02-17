@@ -1,5 +1,7 @@
 package com.example.vead.ui.slideshow
 
+import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -37,8 +39,29 @@ class LibroAdapter(
     override fun onBindViewHolder(holder: LibroViewHolder, position: Int) {
         val libro = books[position]
         holder.txtTitulo.text = libro.title
-        holder.imgLibro.setImageResource(obtenerImagenAleatoria()) // Imagen aleatoria
 
+        // If coverUrl is present, load it with Glide. Otherwise, use your fallback logic.
+        if (libro.coverUrl.isNotEmpty()) {
+            val context = holder.itemView.context
+            val uri = Uri.parse(libro.coverUrl)
+            try {
+                context.contentResolver.openInputStream(uri).use { inputStream ->
+                    val bitmap = BitmapFactory.decodeStream(inputStream)
+                    if (bitmap != null) {
+                        holder.imgLibro.setImageBitmap(bitmap)
+                    } else {
+                        holder.imgLibro.setImageResource(R.drawable.default_img)
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+                holder.imgLibro.setImageResource(R.drawable.default_img)
+            }
+
+        } else {
+            // Fallback to a random resource as before
+            holder.imgLibro.setImageResource(obtenerImagenAleatoria())
+        }
 
 
         holder.txtTitulo.setOnClickListener {

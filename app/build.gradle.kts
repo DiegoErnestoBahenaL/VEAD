@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.activity)
     implementation(libs.firebase.database)
+    implementation(libs.play.services.location)
+    
 
 
     testImplementation(libs.junit)
