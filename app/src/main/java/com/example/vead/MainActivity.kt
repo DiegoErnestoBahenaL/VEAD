@@ -1,7 +1,10 @@
 package com.example.vead
 
 import android.content.Intent
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.Menu
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -55,11 +58,25 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener { menuItem ->
             when (menuItem.itemId) {
                 R.id.nav_logout -> {
-                    // Cerrar sesión: Redirigir al LoginActivity
-                    val intent = Intent(this, Login::class.java)
-                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                    startActivity(intent)
-                    finish() // Finaliza MainActivity
+                    // Play logout sound
+                    val mediaPlayer = MediaPlayer.create(this, R.raw.outro)
+                    mediaPlayer?.start()
+
+                    // Stop playback after 5 seconds
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        if (mediaPlayer.isPlaying) {
+                            mediaPlayer.stop()
+                            mediaPlayer.release()
+                        }
+                    }, 5000)
+
+                    // Delay logout transition slightly to allow sound to start playing
+                    Handler(Looper.getMainLooper()).postDelayed({
+                        val intent = Intent(this, Login::class.java)
+                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                        startActivity(intent)
+                        finish()
+                    }, 1000) // Start transition after 1 second
                     true
                 }
 

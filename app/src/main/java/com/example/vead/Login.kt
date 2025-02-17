@@ -3,7 +3,10 @@ package com.example.vead
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.media.MediaPlayer
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -102,6 +105,18 @@ class Login : AppCompatActivity() {
     }
 
     private fun navegarADashboard(user: User) {
+
+        // Play login sound
+        val mediaPlayer = MediaPlayer.create(this, R.raw.intro)
+        mediaPlayer?.start()
+
+        // Stop playback after 5 seconds
+        Handler(Looper.getMainLooper()).postDelayed({
+            if (mediaPlayer.isPlaying) {
+                mediaPlayer.stop()
+                mediaPlayer.release()
+            }
+        }, 5000) // 5000ms = 5 seconds
 
         val intent = Intent(this, MainActivity::class.java)
             .putExtra("UserType", user.userType)
