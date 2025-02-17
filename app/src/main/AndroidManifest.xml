@@ -12,7 +12,7 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
 
-
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
 
     <application
@@ -25,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.VEAD"
         tools:targetApi="31">
+
+        <receiver android:name="com.example.vead.ui.slideshow.ReturnReminderReceiver"
+            android:exported="true"/>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

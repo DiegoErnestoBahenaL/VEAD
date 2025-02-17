@@ -40,7 +40,6 @@ class LibroAdapter(
         val libro = books[position]
         holder.txtTitulo.text = libro.title
 
-        // If coverUrl is present, load it with Glide. Otherwise, use your fallback logic.
         if (libro.coverUrl.isNotEmpty()) {
             val context = holder.itemView.context
             val uri = Uri.parse(libro.coverUrl)
