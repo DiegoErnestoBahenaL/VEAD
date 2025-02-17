@@ -2,7 +2,6 @@ package com.example.vead
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -10,13 +9,12 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.example.vead.data.entities.User
 import com.example.vead.data.repositories.UserRepository
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import kotlinx.coroutines.launch
 
 class Login : AppCompatActivity() {
-    private lateinit var databaseRef: DatabaseReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,9 +30,9 @@ class Login : AppCompatActivity() {
 
 
             val email = emailField.text.toString()
-            val contrasena = passwordField.text.toString()
+            val password = passwordField.text.toString()
 
-            if (email.isEmpty() || contrasena.isEmpty()) {
+            if (email.isEmpty() || password.isEmpty()) {
                 Toast.makeText(this, "Por favor, complete ambos campos", Toast.LENGTH_SHORT).show()
             } else {
 
@@ -43,8 +41,7 @@ class Login : AppCompatActivity() {
                 userRepo.getUserByEmail(email){
                     user ->
                     if (user != null){
-                        navegarADashboard(user.userType, user.email)
-
+                        navegarADashboard(user)
                     }
                     else {
                         Toast.makeText(this, "Credenciales incorrectas", Toast.LENGTH_SHORT).show()
@@ -62,11 +59,16 @@ class Login : AppCompatActivity() {
         }
     }
 
-    private fun navegarADashboard(tipoUsuario: String, email: String) {
+    private fun navegarADashboard(user: User) {
 
         val intent = Intent(this, MainActivity::class.java)
-            .putExtra("TipoUsuario", tipoUsuario)
-            .putExtra("Email", email)
+            .putExtra("UserType", user.userType)
+            .putExtra("Email", user.email)
+            .putExtra("Password", user.password)
+            .putExtra("Name", user.name)
+            .putExtra("LastName", user.lastName)
+            .putExtra("Code", user.code)
+            .putExtra("PhoneNumber", user.phoneNumber)
         startActivity(intent)
         finish()
     }

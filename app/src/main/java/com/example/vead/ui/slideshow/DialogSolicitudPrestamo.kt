@@ -12,7 +12,7 @@ import java.util.Calendar
 
 class DialogSolicitudPrestamo(
     private val tituloLibro: String,
-    private val registroEstudiante: String,
+    private val registroEstudiante: Long,
     private val onSolicitudCreada: (Request) -> Unit
 ) : DialogFragment() {
 
@@ -37,12 +37,12 @@ class DialogSolicitudPrestamo(
             .setPositiveButton("Solicitar") { _, _ ->
                 val folio = (1000..9999).random() // Generar folio aleatorio
                 val solicitud = Request(
-                    folio = folio,
-                    registroEstudiante = registroEstudiante,
-                    tituloLibro = tituloLibro,
-                    fechaPrestamo = etFechaPrestamo.text.toString(),
-                    fechaDevolucion = etFechaDevolucion.text.toString(),
-                    estado = "Solicitado"
+                    folio,
+                    registroEstudiante,
+                    tituloLibro,
+                    etFechaPrestamo.text.toString(),
+                    etFechaDevolucion.text.toString(),
+                    "Solicitado"
                 )
                 onSolicitudCreada(solicitud)
             }

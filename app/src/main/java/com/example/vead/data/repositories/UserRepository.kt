@@ -3,10 +3,9 @@ package com.example.vead.data.repositories
 import com.example.vead.data.entities.User
 import com.google.firebase.database.*
 
-public class UserRepository {
+class UserRepository {
 
     private val database = FirebaseDatabase.getInstance()
-
     private val userRef: DatabaseReference = database.getReference("Users")
 
     /**
@@ -14,13 +13,11 @@ public class UserRepository {
      *  Callback returns true if successful, false otherwise.
      */
     fun addUser(user: User, callback: (Boolean) -> Unit) {
-        // Generate a new key under "Users/" path
         val newUserKey = userRef.push().key
         if (newUserKey == null) {
             callback(false)
             return
         }
-        // Write the new user data at "Users/{newUserKey}"
         userRef.child(newUserKey).setValue(user)
             .addOnSuccessListener { callback(true) }
             .addOnFailureListener { callback(false) }
@@ -28,7 +25,7 @@ public class UserRepository {
 
     /**
      *  Retrieve the full list of users, read once (no continuous listening).
-     *  Callback returns a list of all the User objects found.
+     *  Callback returns a list of all the User objects found, or emptyList() on error.
      */
     fun getAllUsers(callback: (List<User>) -> Unit) {
         userRef.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -40,8 +37,10 @@ public class UserRepository {
                 }
                 callback(userList)
             }
+
             override fun onCancelled(error: DatabaseError) {
-                callback(emptyList()) // or handle error
+                // Return an empty list in case of error
+                callback(emptyList())
             }
         })
     }
@@ -55,17 +54,16 @@ public class UserRepository {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        for (childSnapshot in snapshot.children) {
-                            val user = childSnapshot.getValue(User::class.java)
-                            // Return the first match
-                            if (user != null) {
-                                callback(user)
-                                return
-                            }
-                        }
+                        // Directly get the first (and only) matching child
+                        val firstChild = snapshot.children.firstOrNull()
+                        val user = firstChild?.getValue(User::class.java)
+                        callback(user)
+                    } else {
+                        // No user found with this email
+                        callback(null)
                     }
-                    callback(null)
                 }
+
                 override fun onCancelled(error: DatabaseError) {
                     callback(null)
                 }
@@ -81,27 +79,22 @@ public class UserRepository {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        // We'll update the *first* matching record (if multiple, you can handle differently)
-                        var updatedSuccessfully = false
-                        for (childSnapshot in snapshot.children) {
-                            childSnapshot.ref.setValue(updatedUser)
-                                .addOnSuccessListener {
-                                    updatedSuccessfully = true
-                                    callback(true)
-                                }
-                                .addOnFailureListener {
-                                    callback(false)
-                                }
-                            break // after updating the first match, stop
-                        }
-                        if (!updatedSuccessfully) {
+                        // Directly get the first child (unique email => only one match)
+                        val firstChild = snapshot.children.firstOrNull()
+                        if (firstChild != null) {
+                            firstChild.ref.setValue(updatedUser)
+                                .addOnSuccessListener { callback(true) }
+                                .addOnFailureListener { callback(false) }
+                        } else {
+                            // No children despite snapshot.exists() being true
                             callback(false)
                         }
                     } else {
-                        // If no user was found with the given email
+                        // No user found with this email
                         callback(false)
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {
                     callback(false)
                 }
@@ -117,26 +110,22 @@ public class UserRepository {
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
                     if (snapshot.exists()) {
-                        var deletedSuccessfully = false
-                        for (childSnapshot in snapshot.children) {
-                            childSnapshot.ref.removeValue()
-                                .addOnSuccessListener {
-                                    deletedSuccessfully = true
-                                    callback(true)
-                                }
-                                .addOnFailureListener {
-                                    callback(false)
-                                }
-                            break // after deleting the first match, stop
-                        }
-                        if (!deletedSuccessfully) {
+                        // Directly get the first child (unique email => only one match)
+                        val firstChild = snapshot.children.firstOrNull()
+                        if (firstChild != null) {
+                            firstChild.ref.removeValue()
+                                .addOnSuccessListener { callback(true) }
+                                .addOnFailureListener { callback(false) }
+                        } else {
+                            // No children despite snapshot.exists() being true
                             callback(false)
                         }
                     } else {
-                        // If no user was found with the given email
+                        // No user found with this email
                         callback(false)
                     }
                 }
+
                 override fun onCancelled(error: DatabaseError) {
                     callback(false)
                 }

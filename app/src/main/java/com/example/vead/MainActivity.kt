@@ -3,7 +3,6 @@ package com.example.vead
 import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -25,7 +24,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val tipoUsuario = intent.getStringExtra("TipoUsuario") ?: ""
+        val userType = intent.getStringExtra("UserType") ?: ""
 
 
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -38,7 +37,7 @@ class MainActivity : AppCompatActivity() {
         val navView: NavigationView = binding.navView
         val menu = navView.menu
 
-        if (tipoUsuario != "Administrador") {
+        if (userType != "Administrador") {
             menu.findItem(R.id.nav_gallery).isVisible = false
         }
 

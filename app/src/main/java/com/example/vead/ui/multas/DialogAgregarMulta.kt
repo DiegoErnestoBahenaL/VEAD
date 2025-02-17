@@ -56,12 +56,12 @@ class DialogAgregarMulta(
             .setPositiveButton("Agregar") { _, _ ->
                 val folio = (1000..9999).random()
                 val fine = Fine(
-                    folio = folio,
-                    fecha = etFecha.text.toString(),
-                    registroEstudiante = spinnerEstudiantes.selectedItem.toString(),
-                    gravedad = lvGravedad.checkedItemPosition.let { opcionesGravedad.getOrNull(it) } ?: "",
-                    descripcion = etDescripcion.text.toString(),
-                    firma = etFirma.text.toString()
+                    folio,
+                    etFecha.text.toString(),
+                    spinnerEstudiantes.selectedItem.toString().toLong(),
+                    lvGravedad.checkedItemPosition.let { opcionesGravedad.getOrNull(it) } ?: "",
+                    etDescripcion.text.toString(),
+                    etFirma.text.toString()
                 )
                 onMultaAgregada(fine)
             }

@@ -7,10 +7,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
+import com.example.vead.data.entities.User
 
 class EstudianteAdapter (
-    private val estudiantes: List<Estudiante>,
-    private val onEliminarClick: (Estudiante) -> Unit): RecyclerView.Adapter<EstudianteAdapter.EstudianteViewHolder>() {
+    private val users: List<User>,
+    private val onEliminarClick: (User) -> Unit): RecyclerView.Adapter<EstudianteAdapter.EstudianteViewHolder>() {
 
 
     class EstudianteViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -25,10 +26,10 @@ class EstudianteAdapter (
     }
 
     override fun onBindViewHolder(holder: EstudianteViewHolder, position: Int) {
-        val estudiante = estudiantes[position]
+        val estudiante = users[position]
         holder.txtCorreo.text = estudiante.email
         holder.btnEliminar.setOnClickListener { onEliminarClick(estudiante) }
     }
 
-    override fun getItemCount(): Int = estudiantes.size
+    override fun getItemCount(): Int = users.size
 }

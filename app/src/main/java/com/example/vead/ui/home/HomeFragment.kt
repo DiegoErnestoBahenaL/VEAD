@@ -1,61 +1,49 @@
 package com.example.vead.ui.home
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.example.vead.R
+import com.example.vead.data.entities.User
 import com.example.vead.data.repositories.UserRepository
 import com.example.vead.databinding.FragmentHomeBinding
+import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
 
+    val userRepo = UserRepository()
 
     private lateinit var email: String
-    private lateinit var tipoUsuario: String
+    private lateinit var password: String
+    private lateinit var userType: String
+    private lateinit var name: String
+    private lateinit var lastName: String
+    private lateinit var code: String
+    private lateinit var phoneNumber: String
 
     // Campos comunes de la clase Usuario
     private lateinit var editEmail: EditText
-    private lateinit var editContrasena: EditText
-    private lateinit var editNombre: EditText
-    private lateinit var editFechaCreacion: EditText
-    private lateinit var editFechaExpiracion: EditText
-    private lateinit var editTipo: EditText
+    private lateinit var editPassword: EditText
+    private lateinit var editName: EditText
+    private lateinit var editLastName: EditText
+    private lateinit var editPhoneNumber: EditText
+    private lateinit var editUserType: EditText
+    private lateinit var editCode: EditText
 
-    // Campos para Administrador
-    private lateinit var textCodigoTrabajador: TextView
-    private lateinit var editCodigoTrabajador: EditText
-    private lateinit var textRFC: TextView
-    private lateinit var editRFC: EditText
-    private lateinit var textNombreSupervisor: TextView
-    private lateinit var editNombreSupervisor: EditText
-    private lateinit var textTelefono: TextView
-    private lateinit var editTelefono: EditText
-    private lateinit var textTurno: TextView
-    private lateinit var editTurno: EditText
 
-    // Campos para Estudiante
-    private lateinit var textRegistro: TextView
-    private lateinit var editRegistro: EditText
-    private lateinit var textGrado: TextView
-    private lateinit var editGrado: EditText
-    private lateinit var textCarrera: TextView
-    private lateinit var editCarrera: EditText
-    private lateinit var textNombreTutor: TextView
-    private lateinit var editNombreTutor: EditText
-    private lateinit var textGrupo: TextView
-    private lateinit var editGrupo: EditText
 
-    private lateinit var buttonActualizar : Button
+    private lateinit var buttonUpdate : Button
 
-    private var administrador : Administrador? = null
-    private var estudiante : Estudiante? = null
+    private var user : User? = null
+
 
     private var _binding: FragmentHomeBinding? = null
 
@@ -69,14 +57,16 @@ class HomeFragment : Fragment() {
 
         // Recuperar los extras del Intent
         email = requireActivity().intent.getStringExtra("Email") ?: ""
-        tipoUsuario = requireActivity().intent.getStringExtra("TipoUsuario") ?: ""
+        userType = requireActivity().intent.getStringExtra("UserType") ?: ""
+        password = requireActivity().intent.getStringExtra("Password") ?: ""
+        name = requireActivity().intent.getStringExtra("Name") ?: ""
+        lastName = requireActivity().intent.getStringExtra("LastName") ?: ""
+        code = (requireActivity().intent.getLongExtra("Code", 0) ?: "").toString()
+        phoneNumber = (requireActivity().intent.getLongExtra("PhoneNumber", 0) ?: "").toString()
 
-        if (tipoUsuario == "Administrador") {
-            administrador = UserRepository().buscarUno(email)
-        }
-        else if (tipoUsuario == "Estudiante") {
-            estudiante = EstudianteRepository().buscarUno(email)
-        }
+
+
+
     }
 
     override fun onCreateView(
@@ -90,27 +80,17 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        inicializarCampos(root)
+        initializeFields(root)
 
-        // Inicializar el formulario basado en el tipo de usuario
-        if (tipoUsuario == "Administrador") {
-            configurarFormularioAdministrador()
-        } else if (tipoUsuario == "Estudiante") {
-            configurarFormularioEstudiante()
-        } else {
-            Toast.makeText(requireContext(), "Tipo de usuario desconocido", Toast.LENGTH_SHORT).show()
+        fillUserFields()
+
+
+
+        buttonUpdate.setOnClickListener {
+
+            updateUser()
+
         }
-
-        buttonActualizar.setOnClickListener {
-
-            if (tipoUsuario == "Administrador") {
-                actualizarInformacion(administrador!!)
-            }
-            else if (tipoUsuario == "Estudiante") {
-                actualizarInformacion(estudiante!!)
-            }
-        }
-
 
         return root
     }
@@ -120,184 +100,58 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
-    private fun inicializarCampos(rootView: View) {
+    private fun initializeFields(rootView: View) {
         // Inicializar campos comunes de Usuario
         editEmail = rootView.findViewById(R.id.editEmail)
-        editContrasena = rootView.findViewById(R.id.editContrasena)
-        editNombre = rootView.findViewById(R.id.editNombre)
-        editFechaCreacion = rootView.findViewById(R.id.editFechaCreacion)
-        editFechaExpiracion = rootView.findViewById(R.id.editFechaExpiracion)
-        editTipo = rootView.findViewById(R.id.editTipo)
+        editPassword = rootView.findViewById(R.id.editPassword)
+        editName = rootView.findViewById(R.id.editName)
+        editLastName = rootView.findViewById(R.id.editLastName)
+        editCode = rootView.findViewById(R.id.editCode)
+        editPhoneNumber = rootView.findViewById(R.id.editPhoneNumber)
+        editUserType = rootView.findViewById(R.id.editUserType)
 
-        // Inicializar campos para Administrador
-        textCodigoTrabajador = rootView.findViewById(R.id.textCodigoTrabajador)
-        editCodigoTrabajador = rootView.findViewById(R.id.editCodigoTrabajador)
-        textRFC = rootView.findViewById(R.id.textRFC)
-        editRFC = rootView.findViewById(R.id.editRFC)
-        textNombreSupervisor = rootView.findViewById(R.id.textNombreSupervisor)
-        editNombreSupervisor = rootView.findViewById(R.id.editNombreSupervisor)
-        textTelefono = rootView.findViewById(R.id.textTelefono)
-        editTelefono = rootView.findViewById(R.id.editTelefono)
-        textTurno = rootView.findViewById(R.id.textTurno)
-        editTurno = rootView.findViewById(R.id.editTurno)
-
-        // Inicializar campos para Estudiante
-        textRegistro = rootView.findViewById(R.id.textRegistro)
-        editRegistro = rootView.findViewById(R.id.editRegistro)
-        textGrado = rootView.findViewById(R.id.textGrado)
-        editGrado = rootView.findViewById(R.id.editGrado)
-        textCarrera = rootView.findViewById(R.id.textCarrera)
-        editCarrera = rootView.findViewById(R.id.editCarrera)
-        textNombreTutor = rootView.findViewById(R.id.textNombreTutor)
-        editNombreTutor = rootView.findViewById(R.id.editNombreTutor)
-        textGrupo = rootView.findViewById(R.id.textGrupo)
-        editGrupo = rootView.findViewById(R.id.editGrupo)
-
-        buttonActualizar = rootView.findViewById(R.id.buttonActualizar)
-    }
-
-    private fun configurarFormularioAdministrador() {
-        if (administrador != null) {
-            // Llenar campos comunes
-            llenarCamposUsuario(administrador!!)
-
-            // Llenar campos específicos de Administrador
-            editCodigoTrabajador.setText(administrador!!.codigoTrabajador)
-            editRFC.setText(administrador!!.rfc)
-            editNombreSupervisor.setText(administrador!!.nombreSupervisor)
-            editTelefono.setText(administrador!!.telefono)
-            editTurno.setText(administrador!!.turno)
-
-            // Hacer visibles los campos específicos
-            mostrarCamposAdministrador()
-        } else {
-            Toast.makeText(requireContext(), "No se encontró el administrador", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun configurarFormularioEstudiante() {
-        if (estudiante != null) {
-            // Llenar campos comunes
-            llenarCamposUsuario(estudiante!!)
-
-            // Llenar campos específicos de Estudiante
-            editRegistro.setText(estudiante!!.registro)
-            editGrado.setText(estudiante!!.grado.toString())
-            editCarrera.setText(estudiante!!.carrera)
-            editNombreTutor.setText(estudiante!!.nombreTutor)
-            editGrupo.setText(estudiante!!.grupo)
-
-            // Hacer visibles los campos específicos
-            mostrarCamposEstudiante()
-        } else {
-            Toast.makeText(requireContext(), "No se encontró el estudiante", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun llenarCamposUsuario(administrador: Administrador) {
-        editEmail.setText(administrador.email)
-        editContrasena.setText(administrador.contrasena)
-        editNombre.setText(administrador.nombre)
-        editFechaCreacion.setText(administrador.fechaCreacion)
-        editFechaExpiracion.setText(administrador.fechaExpiracion)
-        editTipo.setText(administrador.tipo)
-
-    }
-
-    private fun llenarCamposUsuario(estudiante: Estudiante) {
-        editEmail.setText(estudiante.email)
-        editContrasena.setText(estudiante.contrasena)
-        editNombre.setText(estudiante.nombre)
-        editFechaCreacion.setText(estudiante.fechaCreacion)
-        editFechaExpiracion.setText(estudiante.fechaExpiracion)
-        editTipo.setText(estudiante.tipo)
-
-    }
-
-    private fun mostrarCamposAdministrador() {
-        textCodigoTrabajador.visibility = View.VISIBLE
-        editCodigoTrabajador.visibility = View.VISIBLE
-        textRFC.visibility = View.VISIBLE
-        editRFC.visibility = View.VISIBLE
-        textNombreSupervisor.visibility = View.VISIBLE
-        editNombreSupervisor.visibility = View.VISIBLE
-        textTelefono.visibility = View.VISIBLE
-        editTelefono.visibility = View.VISIBLE
-        textTurno.visibility = View.VISIBLE
-        editTurno.visibility = View.VISIBLE
-    }
-
-    private fun mostrarCamposEstudiante() {
-        textRegistro.visibility = View.VISIBLE
-        editRegistro.visibility = View.VISIBLE
-        textGrado.visibility = View.VISIBLE
-        editGrado.visibility = View.VISIBLE
-        textCarrera.visibility = View.VISIBLE
-        editCarrera.visibility = View.VISIBLE
-        textNombreTutor.visibility = View.VISIBLE
-        editNombreTutor.visibility = View.VISIBLE
-        textGrupo.visibility = View.VISIBLE
-        editGrupo.visibility = View.VISIBLE
+        buttonUpdate = rootView.findViewById(R.id.buttonUpdate)
     }
 
 
-    private fun actualizarInformacion(administrador: Administrador){
-        val nuevoAdministrador = Administrador(
-            email = editEmail.text.toString(),
-            contrasena = administrador.contrasena, // No se actualiza en el formulario
-            nombre = editNombre.text.toString(),
-            fechaCreacion = editFechaCreacion.text.toString(),
-            fechaExpiracion = editFechaExpiracion.text.toString(),
-            tipo = editTipo.text.toString(),
-            codigoTrabajador = editCodigoTrabajador.text.toString(),
-            rfc = editRFC.text.toString(),
-            nombreSupervisor = editNombreSupervisor.text.toString(),
-            telefono = editTelefono.text.toString(),
-            turno = editTurno.text.toString()
+    private fun fillUserFields() {
+
+            editEmail.setText(email)
+            editPassword.setText(password)
+            editName.setText(name)
+            editLastName.setText(lastName)
+            editCode.setText(code)
+            editPhoneNumber.setText(phoneNumber)
+            editUserType.setText(userType)
+    }
+
+
+    private fun updateUser(){
+        val nuevoAdministrador = User(
+            editCode.text.toString().toLong(),
+            editEmail.text.toString(),
+            editLastName.text.toString(),
+            editName.text.toString(),
+            editPassword.text.toString(),
+            editPhoneNumber.text.toString().toLong(),
+            userType
         )
-        val exito = UserRepository().actualizar(email, nuevoAdministrador)
-        if (exito) {
-            Toast.makeText(
-                requireContext(),
-                "Administrador actualizado con éxito",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            Toast.makeText(
-                requireContext(),
-                "Error al actualizar el administrador",
-                Toast.LENGTH_SHORT
-            ).show()
+        userRepo.updateUserByEmail(email, nuevoAdministrador) {
+            if (it) {
+                Toast.makeText(
+                    requireContext(),
+                    "Administrador actualizado con éxito",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Error al actualizar el administrador",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
+
     }
 
-    private fun actualizarInformacion(estudiante: Estudiante) {
-        val nuevoEstudiante = Estudiante(
-            email = editEmail.text.toString(),
-            contrasena = editContrasena.text.toString(),
-            nombre = editNombre.text.toString(),
-            fechaCreacion = editFechaCreacion.text.toString(),
-            fechaExpiracion = editFechaExpiracion.text.toString(),
-            tipo = estudiante.tipo,
-            registro = editRegistro.text.toString(),
-            grado = editGrado.text.toString().toIntOrNull() ?: 0,
-            carrera = editCarrera.text.toString(),
-            nombreTutor = editNombreTutor.text.toString(),
-            grupo = editGrupo.text.toString()
-        )
-        val exito = EstudianteRepository().actualizar(email, nuevoEstudiante)
-        if (exito) {
-            Toast.makeText(
-                requireContext(),
-                "Estudiante actualizado con éxito",
-                Toast.LENGTH_SHORT
-            ).show()
-        } else {
-            Toast.makeText(
-                requireContext(),
-                "Error al actualizar el estudiante",
-                Toast.LENGTH_SHORT
-            ).show()
-        }
-    }
 }

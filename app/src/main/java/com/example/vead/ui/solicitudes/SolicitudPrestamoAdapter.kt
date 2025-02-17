@@ -38,10 +38,10 @@ class SolicitudPrestamoAdapter(
     override fun onBindViewHolder(holder: SolicitudViewHolder, position: Int) {
         val solicitud = solicitudes[position]
 
-        holder.tvFolioRegistro.text = "Folio: ${solicitud.folio} | Registro: ${solicitud.registroEstudiante}"
-        holder.tvTituloLibro.text = "Título: ${solicitud.tituloLibro}"
-        holder.tvFechas.text = "Préstamo: ${solicitud.fechaPrestamo} | Devolución: ${solicitud.fechaDevolucion}"
-        holder.tvEstado.text = "Estado: ${solicitud.estado}"
+        holder.tvFolioRegistro.text = "Folio: ${solicitud.folio} | Registro: ${solicitud.userCode}"
+        holder.tvTituloLibro.text = "Título: ${solicitud.bookTitle}"
+        holder.tvFechas.text = "Préstamo: ${solicitud.requestDate} | Devolución: ${solicitud.returnDate}"
+        holder.tvEstado.text = "Estado: ${solicitud.status}"
 
         if (tipoUsuario == "Administrador") {
             holder.layoutBotones.visibility = View.VISIBLE

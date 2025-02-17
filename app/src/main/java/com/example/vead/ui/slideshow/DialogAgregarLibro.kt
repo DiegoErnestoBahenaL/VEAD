@@ -24,11 +24,12 @@ class DialogAgregarLibro(private val onLibroAgregado: (Book) -> Unit) : DialogFr
             .setTitle("Agregar Libro")
             .setPositiveButton("Agregar") { _, _ ->
                 val book = Book(
-                    titulo = etTitulo.text.toString(),
-                    autor = etAutor.text.toString(),
-                    genero = etGenero.text.toString(),
-                    numeroCopias = etNumeroCopias.text.toString().toIntOrNull() ?: 0,
-                    ubicacion = etUbicacion.text.toString()
+                    etTitulo.text.toString(),
+                    etAutor.text.toString(),
+                    etGenero.text.toString(),
+                    etNumeroCopias.text.toString().toIntOrNull() ?: 0,
+                    etUbicacion.text.toString(),
+                    ""
                 )
                 onLibroAgregado(book)
             }

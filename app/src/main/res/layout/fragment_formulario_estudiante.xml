@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Nombre -->
+            <!-- Nanme -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -29,6 +29,19 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Ingrese el nombre" />
+
+            <!-- LastName -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Apellido" />
+
+            <EditText
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese el apellido" />
 
             <!-- Email -->
             <TextView
@@ -56,7 +69,20 @@
                 android:layout_height="wrap_content"
                 android:hint="Ingrese la contraseña" />
 
-            <!-- Registro -->
+            <!-- Codigo -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:text="Codigo" />
+
+            <EditText
+                android:id="@+id/etRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Ingrese el codigo" />
+
+            <!-- Phone Number -->
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -64,91 +90,10 @@
                 android:text="Registro" />
 
             <EditText
-                android:id="@+id/etRegistro"
+                android:id="@+id/etPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Ingrese el número de registro" />
-
-            <!-- Fecha de Creación -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Fecha de creación" />
-
-            <EditText
-                android:id="@+id/etFechaCreacion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:hint="Seleccione la fecha de creación" />
-
-            <!-- Fecha de Expiración -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Fecha de expiración" />
-
-            <EditText
-                android:id="@+id/etFechaExpiracion"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:focusable="false"
-                android:hint="Seleccione la fecha de expiración" />
-
-            <!-- Grado -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Grado" />
-
-            <EditText
-                android:id="@+id/etGrado"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ingrese el grado"
-                android:inputType="number" />
-
-            <!-- Carrera -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Carrera" />
-
-            <EditText
-                android:id="@+id/etCarrera"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ingrese la carrera" />
-
-            <!-- Nombre del tutor -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Nombre del Tutor" />
-
-            <EditText
-                android:id="@+id/etNombreTutor"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ingrese el nombre del tutor" />
-
-            <!-- Grupo -->
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:text="Grupo" />
-
-            <EditText
-                android:id="@+id/etGrupo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ingrese el grupo" />
+                android:hint="Ingrese el teléfono" />
 
 
             <!-- Botón Guardar -->

@@ -32,10 +32,10 @@ class MultaAdapter(
     override fun onBindViewHolder(holder: MultaViewHolder, position: Int) {
         val multa = fines[position]
 
-        holder.tvFolioRegistro.text = "Folio: ${multa.folio} | Registro: ${multa.registroEstudiante}"
-        holder.tvFechaGravedad.text = "Fecha: ${multa.fecha} | Gravedad: ${multa.gravedad}"
-        holder.tvDescripcion.text = "Descripción: ${multa.descripcion}"
-        holder.tvFirma.text = "Firma: ${multa.firma}"
+        holder.tvFolioRegistro.text = "Folio: ${multa.folio} | Registro: ${multa.userCode}"
+        holder.tvFechaGravedad.text = "Fecha: ${multa.date} | Gravedad: ${multa.severity}"
+        holder.tvDescripcion.text = "Descripción: ${multa.description}"
+        holder.tvFirma.text = "Firma: ${multa.signature}"
 
 
         if (tipoUsuario == "Administrador") {

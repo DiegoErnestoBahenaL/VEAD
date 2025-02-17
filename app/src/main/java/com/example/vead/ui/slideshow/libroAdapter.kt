@@ -36,18 +36,18 @@ class LibroAdapter(
 
     override fun onBindViewHolder(holder: LibroViewHolder, position: Int) {
         val libro = books[position]
-        holder.txtTitulo.text = libro.titulo
+        holder.txtTitulo.text = libro.title
         holder.imgLibro.setImageResource(obtenerImagenAleatoria()) // Imagen aleatoria
 
 
 
         holder.txtTitulo.setOnClickListener {
             val bundle = Bundle().apply {
-                putString("titulo", libro.titulo)
-                putString("autor", libro.autor)
-                putString("genero", libro.genero)
-                putInt("numeroCopias", libro.numeroCopias)
-                putString("ubicacion", libro.ubicacion)
+                putString("titulo", libro.title)
+                putString("autor", libro.author)
+                putString("genero", libro.genre)
+                putInt("numeroCopias", libro.copiesNumber)
+                putString("ubicacion", libro.location)
             }
             val navController = Navigation.findNavController(holder.itemView)
             navController.navigate(R.id.action_slideshowFragment_to_detallesLibroFragment, bundle)

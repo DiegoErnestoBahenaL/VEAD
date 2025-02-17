@@ -9,20 +9,32 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
 import com.example.vead.data.entities.Book
 import com.example.vead.data.repositories.BookRepository
 import com.example.vead.data.repositories.RequestRepository
+import com.example.vead.data.repositories.UserRepository
 import com.example.vead.databinding.FragmentSlideshowBinding
+import kotlinx.coroutines.launch
 
 class SlideshowFragment : Fragment() {
 
+    private val bookRepo = BookRepository()
+    private val userRepo = UserRepository()
+    private val requestRepo = RequestRepository()
+
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: LibroAdapter
-    private val bookRepository = BookRepository()
+
     private var tipoUsuario: String? = null
+
+    private var email: String? = null
+    private var code: String? = null
+
+
 
 
     private var _binding: FragmentSlideshowBinding? = null
@@ -42,7 +54,11 @@ class SlideshowFragment : Fragment() {
         _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        tipoUsuario = activity?.intent?.getStringExtra("TipoUsuario")
+        tipoUsuario = activity?.intent?.getStringExtra("UserType")
+        email = activity?.intent?.getStringExtra("Email")
+        code = (requireActivity().intent.getLongExtra("Code", 0) ?: "").toString()
+
+
 
         recyclerView = root.findViewById(R.id.recyclerLibros)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -64,52 +80,66 @@ class SlideshowFragment : Fragment() {
     }
 
     private fun actualizarListaLibros() {
-        val libros = bookRepository.obtenerTodos()
-        adapter = LibroAdapter(
-            libros,
-            tipoUsuario ?: "",
-            onSolicitarClick = { libro -> solicitarPrestamo(libro) },
-            onActualizarClick = { libro -> mostrarDialogActualizarLibro(libro) },
-            onEliminarClick = { libro -> mostrarDialogConfirmarEliminacion(libro) }
-        )
-        recyclerView.adapter = adapter
+
+        bookRepo.getAllBooks { data ->
+            adapter = LibroAdapter(
+                data,
+                tipoUsuario ?: "",
+                onSolicitarClick = { libro -> solicitarPrestamo(libro) },
+                onActualizarClick = { libro -> mostrarDialogActualizarLibro(libro) },
+                onEliminarClick = { libro -> mostrarDialogConfirmarEliminacion(libro) }
+            )
+            recyclerView.adapter = adapter
+        }
+
     }
 
     private fun solicitarPrestamo(book: Book) {
-        // Obtener el registro del estudiante desde el repositorio
-        val emailEstudiante = activity?.intent?.getStringExtra("Email") ?: ""
-        val estudiante = EstudianteRepository().buscarUno(emailEstudiante)
-
-        if (estudiante == null) {
-            Toast.makeText(requireContext(), "No se pudo obtener la información del estudiante.", Toast.LENGTH_SHORT).show()
-            return
-        }
 
         // Mostrar el diálogo para capturar las fechas
         val dialog = DialogSolicitudPrestamo(
-            tituloLibro = book.titulo,
-            registroEstudiante = estudiante.registro
+            tituloLibro = book.title,
+            registroEstudiante = code!!.toLong()
         ) { solicitud ->
+            requestRepo.addRequest(solicitud){ succesful ->
+                if (succesful){
+                    Toast.makeText(requireContext(), "Solicitud de préstamo creada con éxito.", Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(requireContext(), "Hubo un error al crear la solicitud.", Toast.LENGTH_SHORT).show()
 
-            RequestRepository().agregar(solicitud)
-            Toast.makeText(requireContext(), "Solicitud de préstamo creada con éxito.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-
         dialog.show(parentFragmentManager, "DialogSolicitudPrestamo")
     }
 
     private fun mostrarDialogAgregarLibro() {
         val dialog = DialogAgregarLibro { libro ->
-            bookRepository.agregar(libro)
-            actualizarListaLibros()
+
+            bookRepo.addBook(libro){ successful ->
+                if (successful){
+                    actualizarListaLibros()
+                }
+                else {
+                    Toast.makeText(requireContext(), "Hubo un error al agregar el libro.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
         dialog.show(parentFragmentManager, "DialogAgregarLibro")
     }
 
     private fun mostrarDialogActualizarLibro(book: Book) {
         val dialog = DialogActualizarLibro(book) { libroActualizado ->
-            bookRepository.actualizar(book.titulo, libroActualizado)
-            actualizarListaLibros()
+
+            bookRepo.updateBookByTitle(book.title, libroActualizado){ successful ->
+                if (successful){
+                    actualizarListaLibros()
+                }
+                else {
+                    Toast.makeText(requireContext(), "Hubo un error al actualizar el libro.", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
         dialog.show(parentFragmentManager, "DialogActualizarLibro")
     }
@@ -117,10 +147,18 @@ class SlideshowFragment : Fragment() {
     private fun mostrarDialogConfirmarEliminacion(book: Book) {
         AlertDialog.Builder(requireContext())
             .setTitle("Confirmar eliminación")
-            .setMessage("¿Estás seguro de que deseas eliminar '${book.titulo}'?")
+            .setMessage("¿Estás seguro de que deseas eliminar '${book.title}'?")
             .setPositiveButton("Sí") { _, _ ->
-                bookRepository.eliminar(book.titulo)
-                actualizarListaLibros()
+
+                bookRepo.deleteBookByTitle(book.title){ successful ->
+                    if (successful){
+                        actualizarListaLibros()
+                    }
+                    else {
+                        Toast.makeText(requireContext(), "Hubo un error al eliminar el libro.", Toast.LENGTH_SHORT).show()
+
+                    }
+                }
             }
             .setNegativeButton("Cancelar", null)
             .show()

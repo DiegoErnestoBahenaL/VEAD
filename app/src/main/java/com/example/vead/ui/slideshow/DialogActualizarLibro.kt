@@ -24,21 +24,22 @@ class DialogActualizarLibro(
         val etUbicacion = view.findViewById<EditText>(R.id.etUbicacionActualizar)
 
         // Pre-cargar datos del libro
-        etTitulo.setText(book.titulo)
-        etAutor.setText(book.autor)
-        etGenero.setText(book.genero)
-        etNumeroCopias.setText(book.numeroCopias.toString())
-        etUbicacion.setText(book.ubicacion)
+        etTitulo.setText(book.title)
+        etAutor.setText(book.author)
+        etGenero.setText(book.genre)
+        etNumeroCopias.setText(book.copiesNumber.toString())
+        etUbicacion.setText(book.location)
 
         builder.setView(view)
             .setTitle("Actualizar Libro")
             .setPositiveButton("Guardar") { _, _ ->
                 val bookActualizado = Book(
-                    titulo = etTitulo.text.toString(),
-                    autor = etAutor.text.toString(),
-                    genero = etGenero.text.toString(),
-                    numeroCopias = etNumeroCopias.text.toString().toIntOrNull() ?: 0,
-                    ubicacion = etUbicacion.text.toString()
+                    etTitulo.text.toString(),
+                    etAutor.text.toString(),
+                    etGenero.text.toString(),
+                    etNumeroCopias.text.toString().toIntOrNull() ?: 0,
+                    etUbicacion.text.toString(),
+                    ""
                 )
                 onLibroActualizado(bookActualizado)
             }

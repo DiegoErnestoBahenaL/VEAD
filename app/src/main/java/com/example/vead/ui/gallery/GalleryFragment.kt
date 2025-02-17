@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,13 +14,15 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vead.R
+import com.example.vead.data.entities.User
+import com.example.vead.data.repositories.UserRepository
 import com.example.vead.databinding.FragmentGalleryBinding
 
 class GalleryFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: EstudianteAdapter
-    private val repository = EstudianteRepository()
+    private val repository = UserRepository()
 
     private var _binding: FragmentGalleryBinding? = null
 
@@ -47,11 +49,13 @@ class GalleryFragment : Fragment() {
         val itemDecoration = DividerItemDecoration(requireContext(), LinearLayoutManager.VERTICAL)
         recyclerView.addItemDecoration(itemDecoration)
 
-        val estudiantes = repository.obtenerTodos()
-        adapter = EstudianteAdapter(estudiantes) { estudiante ->
-            mostrarDialogoConfirmacion(estudiante)
+         repository.getAllUsers{ data ->
+             adapter = EstudianteAdapter(data) { estudiante ->
+                 mostrarDialogoConfirmacion(estudiante)
+             }
+             recyclerView.adapter = adapter
         }
-        recyclerView.adapter = adapter
+
 
         // Botón para agregar estudiante
         val btnAgregarEstudiante = root.findViewById<Button>(R.id.btnAgregarEstudiante)
@@ -63,24 +67,36 @@ class GalleryFragment : Fragment() {
         return root
     }
 
-    private fun mostrarDialogoConfirmacion(estudiante: Estudiante) {
+    private fun mostrarDialogoConfirmacion(estudiante: User) {
         AlertDialog.Builder(requireContext())
             .setTitle("Confirmar eliminación")
             .setMessage("¿Estás seguro de que deseas eliminar a ${estudiante.email}?")
             .setPositiveButton("Sí") { _, _ ->
-                repository.eliminar(estudiante.email)
-                actualizarListado()
+                repository.deleteUserByEmail(estudiante.email) { succesful ->
+                    if (succesful){
+                        actualizarListado()
+                    }
+                    else {
+                        Toast.makeText(requireContext(), "Sucedio un error al eliminar", Toast.LENGTH_SHORT).show()
+
+                    }
+                }
+
             }
             .setNegativeButton("Cancelar", null)
             .show()
     }
 
     private fun actualizarListado() {
-        val estudiantes = repository.obtenerTodos()
-        adapter = EstudianteAdapter(estudiantes) { estudiante ->
-            mostrarDialogoConfirmacion(estudiante)
+        repository.getAllUsers {data ->
+
+                adapter = EstudianteAdapter(data) { estudiante ->
+                    mostrarDialogoConfirmacion(estudiante)
+                }
+                recyclerView.adapter = adapter
+
         }
-        recyclerView.adapter = adapter
+
     }
 
     override fun onDestroyView() {
