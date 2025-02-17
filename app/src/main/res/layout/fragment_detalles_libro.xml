@@ -50,6 +50,13 @@
                 android:layout_height="wrap_content"
                 android:text="Ubicación"
                 android:paddingBottom="8dp" />
+
+            <!-- MapView to display route -->
+            <com.google.android.gms.maps.MapView
+                android:id="@+id/mapView"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"/>
         </LinearLayout>
     </ScrollView>
 
