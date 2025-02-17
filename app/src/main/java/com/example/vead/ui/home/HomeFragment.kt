@@ -1,6 +1,8 @@
 package com.example.vead.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,9 +53,14 @@ class HomeFragment : Fragment() {
     // onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var sharedPreferences: SharedPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        sharedPreferences = requireActivity().getSharedPreferences("LoginPrefs", Context.MODE_PRIVATE)
+
 
         // Recuperar los extras del Intent
         email = requireActivity().intent.getStringExtra("Email") ?: ""
@@ -127,7 +134,7 @@ class HomeFragment : Fragment() {
 
 
     private fun updateUser(){
-        val nuevoAdministrador = User(
+        val updatedUser = User(
             editCode.text.toString().toLong(),
             editEmail.text.toString(),
             editLastName.text.toString(),
@@ -136,22 +143,36 @@ class HomeFragment : Fragment() {
             editPhoneNumber.text.toString().toLong(),
             userType
         )
-        userRepo.updateUserByEmail(email, nuevoAdministrador) {
+        userRepo.updateUserByEmail(email, updatedUser) {
             if (it) {
+                val savedPassword = sharedPreferences.getString("password", "")
+
+                if (updatedUser.password != savedPassword){
+                    clearLoginDetails()
+                }
+
                 Toast.makeText(
                     requireContext(),
-                    "Administrador actualizado con éxito",
+                    "Usuario actualizado con éxito",
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
                 Toast.makeText(
                     requireContext(),
-                    "Error al actualizar el administrador",
+                    "Error al actualizar el usuario",
                     Toast.LENGTH_SHORT
                 ).show()
             }
         }
 
+    }
+
+    private fun clearLoginDetails() {
+        val editor = sharedPreferences.edit()
+        editor.remove("email")
+        editor.remove("password")
+        editor.remove("rememberMe")
+        editor.apply()
     }
 
 }
