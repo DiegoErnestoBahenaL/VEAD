@@ -25,8 +25,8 @@
         <!-- RecyclerView para mostrar libros -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerLibros"
-            android:layout_width="384dp"
-            android:layout_height="677dp"
+            android:layout_width="367dp"
+            android:layout_height="382dp"
             android:layout_marginTop="16dp" />
     </LinearLayout>
 

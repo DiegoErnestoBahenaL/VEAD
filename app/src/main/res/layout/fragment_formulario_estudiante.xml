@@ -87,7 +87,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="8dp"
-                android:text="Registro" />
+                android:text="Telefono" />
 
             <EditText
                 android:id="@+id/etPhoneNumber"

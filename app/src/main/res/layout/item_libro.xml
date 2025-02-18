@@ -13,10 +13,11 @@
             android:id="@+id/txtTitulo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingBottom="4dp"
             android:text="Título del libro"
+            android:textAlignment="center"
             android:textSize="18sp"
-            android:textStyle="bold"
-            android:paddingBottom="4dp" />
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imgLibro"
@@ -29,8 +30,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="end">
+            android:gravity="center"
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/btnSolicitar"

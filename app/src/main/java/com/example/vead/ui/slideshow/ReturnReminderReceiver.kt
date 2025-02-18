@@ -21,20 +21,20 @@ class ReturnReminderReceiver : BroadcastReceiver() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,
-                "Recordatorios de Devolución",
+                "Informacion sobre solicitudes",
                 NotificationManager.IMPORTANCE_DEFAULT
             ).apply {
-                description = "Notificaciones para recordar la devolución de libros"
+                description = "Notificaciones para informar sobre nuevas solicitudes"
             }
             val manager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
             manager.createNotificationChannel(channel)
         }
 
-        // 2) Build Notification
+        // Building the Notification
         val builder = NotificationCompat.Builder(context, channelId)
             .setSmallIcon(R.drawable.default_img)
             .setContentTitle("Solicitud enviada")
-            .setContentText("¡Tu solicitud del libro folio '$title' ha sido enviada!")
+            .setContentText("¡Tu solicitud del libro '$title' ha sido enviada!")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setAutoCancel(true)
 

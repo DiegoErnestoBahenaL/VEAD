@@ -149,6 +149,7 @@ class SlideshowFragment : Fragment() {
                         putExtra("bookTitle", request.bookTitle)
                     }
 
+                    //using folio because is unique/random for each request
                     val pendingIntent = PendingIntent.getBroadcast(
                         requireContext(),
                         request.folio,
