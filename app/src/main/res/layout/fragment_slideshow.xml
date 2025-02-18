@@ -14,7 +14,6 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="-112dp">
 
-        <!-- Botón para agregar libros (solo visible para administradores) -->
         <Button
             android:id="@+id/btnAgregarLibro"
             android:layout_width="match_parent"
@@ -22,7 +21,6 @@
             android:text="Agregar Libro"
             android:visibility="gone" />
 
-        <!-- RecyclerView para mostrar libros -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerLibros"
             android:layout_width="367dp"

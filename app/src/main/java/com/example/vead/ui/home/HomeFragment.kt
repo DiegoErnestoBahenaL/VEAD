@@ -31,7 +31,6 @@ class HomeFragment : Fragment() {
     private lateinit var code: String
     private lateinit var phoneNumber: String
 
-    // Campos comunes de la clase Usuario
     private lateinit var editEmail: EditText
     private lateinit var editPassword: EditText
     private lateinit var editName: EditText
@@ -49,8 +48,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private val binding get() = _binding!!
 
     private lateinit var sharedPreferences: SharedPreferences

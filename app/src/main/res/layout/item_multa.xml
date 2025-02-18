@@ -9,7 +9,6 @@
         android:orientation="vertical"
         android:padding="8dp">
 
-        <!-- Folio y Registro -->
         <TextView
             android:id="@+id/tvFolioRegistro"
             android:layout_width="match_parent"
@@ -17,28 +16,24 @@
             android:textSize="16sp"
             android:paddingBottom="4dp" />
 
-        <!-- Fecha y Gravedad -->
         <TextView
             android:id="@+id/tvFechaGravedad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="4dp" />
 
-        <!-- Descripción -->
         <TextView
             android:id="@+id/tvDescripcion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp" />
 
-        <!-- Frima -->
         <TextView
             android:id="@+id/tvFirma"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingBottom="8dp" />
 
-        <!-- Botón eliminar (visible solo para administradores) -->
         <Button
             android:id="@+id/btnEliminarMulta"
             android:layout_width="wrap_content"

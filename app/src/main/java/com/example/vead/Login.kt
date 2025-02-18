@@ -116,7 +116,7 @@ class Login : AppCompatActivity() {
                 mediaPlayer.stop()
                 mediaPlayer.release()
             }
-        }, 5000) // 5000ms = 5 seconds
+        }, 5000)
 
         val intent = Intent(this, MainActivity::class.java)
             .putExtra("UserType", user.userType)

@@ -47,8 +47,7 @@ class SlideshowFragment : Fragment() {
 
     private var _binding: FragmentSlideshowBinding? = null
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+
     private val binding get() = _binding!!
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -126,7 +125,6 @@ class SlideshowFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun scheduleReturnReminder(request: Request) {
-        // Parse "yyyy-MM-dd" into a Calendar object
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
         val calendar = Calendar.getInstance()
         try {
@@ -168,7 +166,6 @@ class SlideshowFragment : Fragment() {
             }
         } catch (e: Exception) {
             e.printStackTrace()
-            // If there's an error parsing date, do nothing
         }
     }
 

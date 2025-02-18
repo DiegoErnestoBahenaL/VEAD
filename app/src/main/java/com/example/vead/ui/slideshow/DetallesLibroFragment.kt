@@ -153,8 +153,8 @@ class DetallesLibroFragment : Fragment(), OnMapReadyCallback {
     }
 
     /**
-     * This example uses a very simplistic approach to "draw" a line
-     * directly from user to book. For a real route, see below about Directions API.
+     * This example uses a very simple approach to "draw" a line
+     * directly from user to book.
      */
     private fun drawRoute(start: LatLng, end: LatLng) {
         val polylineOptions = PolylineOptions()

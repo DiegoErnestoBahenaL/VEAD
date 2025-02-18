@@ -9,7 +9,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Botón para agregar multas (visible solo para administradores) -->
         <Button
             android:id="@+id/btnAgregarMulta"
             android:layout_width="match_parent"
@@ -17,7 +16,6 @@
             android:text="Agregar Multa"
             android:visibility="gone" />
 
-        <!-- RecyclerView para mostrar multas -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerMultas"
             android:layout_width="365dp"

@@ -17,7 +17,7 @@ class ReturnReminderReceiver : BroadcastReceiver() {
         val title = intent.getStringExtra("bookTitle") ?: ""
         val channelId = "return_due_channel"
 
-        // Create Notification Channel
+        // Creating Notification Channel
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val channel = NotificationChannel(
                 channelId,

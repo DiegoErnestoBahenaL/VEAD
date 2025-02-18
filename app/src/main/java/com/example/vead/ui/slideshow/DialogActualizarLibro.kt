@@ -189,7 +189,7 @@ class DialogActualizarLibro(
 
         val fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-        // Request high accuracy GPS-only location updates
+        // Request with high accuracy GPS-only
         val locationRequest = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 5000).build()
 
         val locationCallback = object : LocationCallback() {

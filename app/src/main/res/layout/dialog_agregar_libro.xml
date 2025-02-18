@@ -10,7 +10,6 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Título -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -23,7 +22,6 @@
             android:layout_height="wrap_content"
             android:hint="Ingrese el título" />
 
-        <!-- Autor -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,7 +35,6 @@
             android:layout_height="wrap_content"
             android:hint="Ingrese el autor" />
 
-        <!-- Género -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -51,7 +48,6 @@
             android:layout_height="wrap_content"
             android:hint="Ingrese el género" />
 
-        <!-- Número de Copias -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -66,7 +62,6 @@
             android:hint="Ingrese el número de copias"
             android:inputType="number" />
 
-        <!-- Ubicación  -->
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -80,21 +75,18 @@
             android:layout_height="wrap_content"
             android:hint="Ingrese la ubicación" />
 
-        <!-- Button to retrieve GPS Location -->
         <Button
             android:id="@+id/btnObtenerUbicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Obtener Ubicación GPS" />
 
-        <!-- Button to take a photo -->
         <Button
             android:id="@+id/btnTomarFoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Tomar Foto" />
 
-        <!-- Preview Image -->
         <ImageView
             android:id="@+id/imgPortada"
             android:layout_width="wrap_content"
